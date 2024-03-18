@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
+import { sharedLayoutHello } from '@happynrwl/shared-ui-layout';
 import React, { useRef, useState } from 'react';
 import {
   SafeAreaView,
@@ -33,6 +34,7 @@ export const App = () => {
         >
           <View style={styles.section}>
             <Text style={styles.textLg}>Hello there,</Text>
+            <Text style={styles.textLg}>{sharedLayoutHello}</Text>
             <Text
               style={[styles.textXL, styles.appTitleText]}
               testID="heading"

@@ -18,6 +18,8 @@ const customConfig = {
     assetExts: assetExts.filter((ext) => ext !== 'svg'),
     sourceExts: [...sourceExts, 'cjs', 'mjs', 'svg'],
   },
+  unstable_enableSymlinks: true,
+  // unstable_enablePackageExports: true,
 };
 
 module.exports = withNxMetro(mergeConfig(defaultConfig, customConfig), {
