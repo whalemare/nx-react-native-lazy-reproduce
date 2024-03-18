@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import { sharedLayoutHello } from '@happynrwl/shared-ui-layout';
-import React, { useRef, useState } from 'react';
+// import { sharedLayoutHello } from '@happynrwl/shared-ui-layout';
+import React, { Suspense, useRef, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,6 +12,14 @@ import {
   Linking,
 } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
+
+// ! uncomment 18 line and comment 19 line to see the app unable to resolve the workspace package
+// const SharedLayoutLazy = React.lazy(() => import('@happynrwl/shared-ui-layout'));
+import SharedLayoutLazy from '@happynrwl/shared-ui-layout';
+
+// Relative imports will work in both cases
+const SomeAppLayout = React.lazy(() => import('./SomeAppLayout')); 
+// import SomeAppLayout from './SomeAppLayout'; 
 
 export const App = () => {
   const [whatsNextYCoord, setWhatsNextYCoord] = useState<number>(0);
@@ -33,8 +41,16 @@ export const App = () => {
           style={styles.scrollView}
         >
           <View style={styles.section}>
+            <Suspense>
+              <SharedLayoutLazy />
+            </Suspense>
+
+            <Suspense>
+              <SomeAppLayout/>
+            </Suspense>
+
             <Text style={styles.textLg}>Hello there,</Text>
-            <Text style={styles.textLg}>{sharedLayoutHello}</Text>
+            {/* <Text style={styles.textLg}>{sharedLayoutHello}</Text> */}
             <Text
               style={[styles.textXL, styles.appTitleText]}
               testID="heading"
